@@ -9,11 +9,12 @@
 
 from ReadData import ReadCSV
 import matplotlib.pyplot as plt
-from sklearn import linear_model,cross_validation, feature_selection, preprocessing
+from sklearn import linear_model, cross_validation, feature_selection, preprocessing
 import statsmodels.formula.api as sm
 from statsmodels.tools.eval_measures import mse
 from statsmodels.tools.tools import add_constant
 from sklearn.metrics import mean_squared_error
+import pandas as pd
 
 class MultiDimLinearRegression1:
 
@@ -70,7 +71,53 @@ class MultiDimLinearRegression1:
         TdataX, VdataX, TdataY, VdataY = cross_validation.train_test_split(dataX[:,:-1],
                                                                            dataX[:, -1],
                                                                            train_size= 0.80)
+        #  height|weight|success_field_goals|success_free_throws|avg_points_scored
+        # |<--------------------------------------------------->|<--------------->|
+        # |<-----------------TdataX/VdataX--------------------->|<-TdataY/VdataY->|
+        # |<------------Independent Variables ----------------->|<-Dep Variable-->|
 
-        # Lets use Ordinary Least Square (OLS) regression
+        # Lets use Ordinary Least Square (OLS) regression model
         ols = sm.OLS(TdataY, add_constant(TdataX)).fit()
         print ols.summary()
+
+        # Lets use Ordinary Least Square (OLS) regression model over success_field_goals
+        olsSFG = sm.OLS(TdataY, add_constant(TdataX[:,2])).fit()
+        print olsSFG.summary()
+
+        # Lets see MSE of above two models
+        TPredictedOLSY = ols.predict(add_constant(VdataX))
+        print mse(TPredictedOLSY, VdataY)
+        TPredictedOLSSFGY = olsSFG.predict(add_constant(VdataX[:,2]))
+        print mse(TPredictedOLSSFGY, VdataY)
+
+        # Lets plot them.. Get visuals
+        #fig, ax = plt.subplots(1, 1)
+        #ax.scatter(VdataY, TPredictedOLSY)
+        #ax.set_xlabel('Actual')
+        #ax.set_ylabel('Predicted')
+        #plt.show()
+        #fig, ax = plt.subplots(1, 1)
+        #ax.scatter(VdataY, TPredictedOLSSFGY)
+        #ax.set_xlabel('Actual')
+        #ax.set_ylabel('Predicted')
+        #plt.show()
+
+        # LETS USE sklearn PACKAGE NOW..
+
+        # create Linear Regression model handle
+        lm = linear_model.LinearRegression()
+
+        # Let train the model
+        lm.fit(TdataX, TdataY)
+
+        # Intercept and Weights
+        print 'Intercept is %f' % lm.intercept_
+        print pd.DataFrame(zip(data.columns,lm.coef_), columns = ['features','estimatedCoefficients'])
+
+        # Cross validate
+        CV = cross_validation.cross_val_score(lm, TdataX, TdataY, scoring='r2')
+        print CV
+
+        # Lets see how system predicts and what is MSE
+        TPredictedLMY = lm.predict(VdataX)
+        print mean_squared_error(TPredictedLMY, VdataY)
