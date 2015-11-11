@@ -15,5 +15,9 @@ if __name__ == "__main__":
 
     # Get Handle and Change Path
     DrChange = ChangeDirectoryPath.ChangeDir()
-    DrChange.SetDir('/Users/kishwarkumar/Desktop/MachineLearningCourse/SepCodes/Pandas')
+    DrChange.SetDir('/Users/kishwarkumar/Documents/MachineLearningCourse_UOfWashington/SepCodes/Pandas')
     DrChange.ChangeIt()
+
+    # Get Handle for LinearRegression1
+    LR1 = LinearRegression1.LinearRegression1()
+    LR1.ModelLinearRegression1()

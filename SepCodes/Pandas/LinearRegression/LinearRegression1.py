@@ -12,18 +12,68 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 import matplotlib.pyplot as plt
+from sklearn import linear_model
+import datetime
 
 class LinearRegression1:
 
+    # Define constructor
+    def __init__(self):
+        return
 
-# Read csv data file
-data = pd.read_csv('Data/Mens_height_weight.csv')
+    def ModelLinearRegression1(self):
+        print '+++++++++++++++++++++++++ LINEAR REGRESSION 1 +++++++++++++++++++++++++'
 
-# Let plot it
-fig, ax = plt.subplots(1, 1)
-ax.scatter(data['Height'], data['Weight'])
-plt.show()
+        # Read csv file.. First get handle
+        comLRHandle = CommonLinearRegression()
+        data = comLRHandle.ReadCSV('Data/Mens_height_weight.csv')
+
+        # Plot Data
+        #fig, ax = plt.subplots(1,1)
+        #ax.set_xlabel('Height')
+        #ax.set_ylabel('Weight')
+        #ax.scatter(data['Height'], data['Weight'])
+        #plt.show()
+
+        #correlation = data.corr()
+
+        # Start bench time
+        print datetime.datetime.now().time()
+
+        # Let get Linear Regression Model Handle
+        lm = linear_model.LinearRegression()
+
+        # Train the system to fit for Min/least possible error
+        lm.fit(data.Height[:, np.newaxis], data.Weight)
+
+        print 'Weight Vector W = [' + str(lm.intercept_) + " " + str(lm.coef_) + ']'
+
+        # End bench time
+        print datetime.datetime.now().time()
+
+        print pd.DataFrame(zip(data.columns,lm.coef_),
+            columns = ['features', 'estimatedCoefficients'])
+
+        # Let Plot
+        fig, ax = plt.subplots(1,1)
+        ax.set_xlabel('Height')
+        ax.set_ylabel('Weight')
+        ax.scatter(data.Height,data.Weight)
+        ###weight is the dependent variable and the height is the independent variable
+        ax.plot(data.Height,lm.predict(data.Height[:, np.newaxis]),
+                color = 'red')
+        plt.show()
+
 
 class CommonLinearRegression:
-    def ReadCSV(self, Path):
+
+    # Define constructor
+    def __init__(self):
         return
+
+    def ReadCSV(self, Path):
+        self.path = Path    #save path
+        return pd.read_csv(Path)
+
+    def GetCSVPath(self):
+        return self.path
