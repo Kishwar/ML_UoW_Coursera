@@ -1,9 +1,8 @@
 # Developed by: Kishwar KUMAR
-# Date: 11/nov/2015
 # Email: kumar.kishwar@gmail.com
 
-# Description: In this file, we will try to implement Mult-Dimension linear regression model on two dimensional
-#               data (Height and Weight). We will try to fit our model with given data (Mens_height_weight.csv).
+# Description: In this file, we will try to implement linear regression model on multi-dimensional
+#               data. We will try to fit our model with given data (basketball.csv).
 # Software Used: PyCharm (Community License)
 # Operating System: OSX
 

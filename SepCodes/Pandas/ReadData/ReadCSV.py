@@ -1,6 +1,5 @@
 # These codes are developed using book "Mastering Python for Data Science.pdf"
 # Developed by: Kishwar KUMAR
-# Date: 11/nov/2015
 # Email: kumar.kishwar@gmail.com
 # Software Used: PyCharm (Community License)
 # Operating System: OSX

@@ -1,5 +1,4 @@
 # Developed by: Kishwar KUMAR
-# Date: 11/nov/2015
 # Email: kumar.kishwar@gmail.com
 
 # Description: In this file, we will try to implement linear regression model on two dimensional data
