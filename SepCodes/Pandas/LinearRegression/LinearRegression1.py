@@ -1,4 +1,3 @@
-# These codes are developed using book "Mastering Python for Data Science.pdf"
 # Developed by: Kishwar KUMAR
 # Date: 11/nov/2015
 # Email: kumar.kishwar@gmail.com
@@ -10,10 +9,10 @@
 
 import numpy as np
 import pandas as pd
-from scipy import stats
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 import datetime
+from ReadData import ReadCSV
 
 class LinearRegression1:
 
@@ -25,8 +24,8 @@ class LinearRegression1:
         print '+++++++++++++++++++++++++ LINEAR REGRESSION 1 +++++++++++++++++++++++++'
 
         # Read csv file.. First get handle
-        comLRHandle = CommonLinearRegression()
-        data = comLRHandle.ReadCSV('Data/Mens_height_weight.csv')
+        comLRHandle = ReadCSV.Read_CSV()
+        data = comLRHandle.Read('Data/Mens_height_weight.csv')
 
         # Plot Data
         #fig, ax = plt.subplots(1,1)
@@ -67,25 +66,12 @@ class LinearRegression1:
         # We are not concerned about units (Kg/Pounds/meters/cm)
 
         # Lets Plot
-        fig, ax = plt.subplots(1,1)
-        ax.set_xlabel('Height')
-        ax.set_ylabel('Weight')
-        ax.scatter(data.Height,data.Weight)
+        #fig, ax = plt.subplots(1,1)
+        #ax.set_xlabel('Height')
+        #ax.set_ylabel('Weight')
+        #ax.scatter(data.Height,data.Weight)
+
         ###weight is the dependent variable and the height is the independent variable
-        ax.plot(data.Height,lm.predict(data.Height[:, np.newaxis]),
-                color = 'red')
-        plt.show()
-
-
-class CommonLinearRegression:
-
-    # Define constructor
-    def __init__(self):
-        return
-
-    def ReadCSV(self, Path):
-        self.path = Path    #save path
-        return pd.read_csv(Path)
-
-    def GetCSVPath(self):
-        return self.path
+        #ax.plot(data.Height,lm.predict(data.Height[:, np.newaxis]),
+        #        color = 'red')
+        #plt.show()
