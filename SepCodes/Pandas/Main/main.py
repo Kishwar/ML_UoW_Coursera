@@ -7,9 +7,9 @@
 
 from DirectoryChange import ChangeDirectoryPath
 from LinearRegression import LinearRegression1
+from LinearRegression import MultiDimLinearRegression
 
 __author__ = 'kishwarkumar'
-__date__ = '11/11/15' '4:51 PM'
 
 if __name__ == "__main__":
 
@@ -18,6 +18,10 @@ if __name__ == "__main__":
     DrChange.SetDir('/Users/kishwarkumar/Documents/MachineLearningCourse_UOfWashington/SepCodes/Pandas')
     DrChange.ChangeIt()
 
-    # Get Handle for LinearRegression1
-    LR1 = LinearRegression1.LinearRegression1()
-    LR1.ModelLinearRegression1()
+    # Get handle for LinearRegression1
+    #LR1 = LinearRegression1.LinearRegression1('Data/Mens_height_weight.csv')
+    #LR1.ModelLinearRegression1()
+
+    # Get handle for MultiDimLinearRegression
+    MDLR1 = MultiDimLinearRegression.MultiDimLinearRegression1('Data/basketball.csv')
+    MDLR1.ModelLinearRegression1()

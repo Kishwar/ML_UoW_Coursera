@@ -17,7 +17,8 @@ from ReadData import ReadCSV
 class LinearRegression1:
 
     # Define constructor
-    def __init__(self):
+    def __init__(self, Path):
+        self.path = Path
         return
 
     def ModelLinearRegression1(self):
@@ -25,7 +26,11 @@ class LinearRegression1:
 
         # Read csv file.. First get handle
         comLRHandle = ReadCSV.Read_CSV()
-        data = comLRHandle.Read('Data/Mens_height_weight.csv')
+        data = comLRHandle.Read(self.path)
+
+        # Print data and some maths
+        print data
+        print data.describe()
 
         # Plot Data
         #fig, ax = plt.subplots(1,1)
@@ -34,7 +39,9 @@ class LinearRegression1:
         #ax.scatter(data['Height'], data['Weight'])
         #plt.show()
 
-        #correlation = data.corr()
+        print '---- CORRELATION MATRIX ----'
+        print data.corr()
+        print '----------------------------'
 
         # Start bench time
         print datetime.datetime.now().time()

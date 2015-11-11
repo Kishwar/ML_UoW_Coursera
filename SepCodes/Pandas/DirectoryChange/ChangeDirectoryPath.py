@@ -7,7 +7,6 @@
 
 
 __author__ = 'kishwarkumar'
-__date__ = '11/11/15' '4:53 PM'
 
 import os
 
