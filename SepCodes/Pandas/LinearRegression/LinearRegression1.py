@@ -40,7 +40,7 @@ class LinearRegression1:
         # Start bench time
         print datetime.datetime.now().time()
 
-        # Let get Linear Regression Model Handle
+        # Lets get Linear Regression Model Handle
         lm = linear_model.LinearRegression()
 
         # Train the system to fit for Min/least possible error
@@ -54,7 +54,19 @@ class LinearRegression1:
         print pd.DataFrame(zip(data.columns,lm.coef_),
             columns = ['features', 'estimatedCoefficients'])
 
-        # Let Plot
+        print "If we write the equation: Weight = " + str(lm.coef_) + "Height + "  + str(lm.intercept_)
+
+        # This is least fit model to this data. Model has tried to draw two dimension line with least
+        # error between points and line. As Line is linear, there is still sufficient error between
+        # points and line. This is very basic of all the models.
+        # System can be verified by providing random Height to above equation and equation will
+        # return Weight. See following example.
+        print "What will be Weight when Height is 160"
+        print "Weight = " + str(lm.coef_ * 160 + lm.intercept_)
+
+        # We are not concerned about units (Kg/Pounds/meters/cm)
+
+        # Lets Plot
         fig, ax = plt.subplots(1,1)
         ax.set_xlabel('Height')
         ax.set_ylabel('Weight')
