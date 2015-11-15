@@ -6,6 +6,7 @@
 from DirectoryChange import ChangeDirectoryPath
 from LinearRegression import LinearRegression1
 from LinearRegression import MultiDimLinearRegression
+from LogisticRegression import LogisticRegression1
 
 __author__ = 'kishwarkumar'
 
@@ -21,5 +22,9 @@ if __name__ == "__main__":
     #LR1.ModelLinearRegression1()
 
     # Get handle for MultiDimLinearRegression
-    MDLR1 = MultiDimLinearRegression.MultiDimLinearRegression1('Data/basketball.csv')
-    MDLR1.ModelLinearRegression1()
+    #MDLR1 = MultiDimLinearRegression.MultiDimLinearRegression1('Data/basketball.csv')
+    #MDLR1.ModelLinearRegression1()
+
+    # Get handle for Logistic Regression
+    LogReg = LogisticRegression1.LogisticRegression1('Data/titanic_data.csv')
+    LogReg.ModelLogisticReg()
