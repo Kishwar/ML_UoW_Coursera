@@ -11,7 +11,8 @@ import statsmodels.formula.api as sm
 import patsy
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
-
+import pandas as pd
+from sklearn.metrics import classification_report
 class LogisticRegression1:
 
     # Define constructor
@@ -27,7 +28,7 @@ class LogisticRegression1:
         data = comLRHandle.Read(self.path)
 
         # Let count the data and check if any missing info/value
-        print data.count(0)
+        #print data.count(0)
 
         #PassengerId    891
         #Survived       891
@@ -70,7 +71,7 @@ class LogisticRegression1:
         # Execute model to let it fit
         ResLogModel = LogistModel.fit()
 
-        print ResLogModel.summary()
+        #print ResLogModel.summary()
 
                                    #Logit Regression Results
         #==============================================================================
@@ -112,7 +113,7 @@ class LogisticRegression1:
         # Execute model to let it fit
         ResLogModel = LogistModel.fit()
 
-        print ResLogModel.summary()
+        #print ResLogModel.summary()
 
                                   #Logit Regression Results
         #==============================================================================
@@ -188,4 +189,10 @@ class LogisticRegression1:
         # Less the family member on board.. more the chances of survival.
 
         ## Evaluating a model based on test data ##
-        
+        y_pred = ResLogModel.predict(VdataX)
+        y_pred_flag = y_pred > 0.7
+        print '------------------------------------------------------------------------------------------'
+        print pd.crosstab(VdataY.Survived, y_pred_flag, rownames = ['Actual'], colnames = ['Predicted'])
+        print '------------------------------------------------------------------------------------------'
+        print classification_report(VdataY, y_pred_flag)
+        print '------------------------------------------------------------------------------------------'
