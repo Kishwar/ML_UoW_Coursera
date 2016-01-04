@@ -48,4 +48,4 @@ def extract_channel_views(show_view_channel):
          # develop extract_channel_views(show_view_channel)
 # step10: call channel_views = joined_dataset.map(extract_channel_views)
 # step11: develop some across all channels function (sum_function(a,b))
-# step10: call channel_views.reduceByKey(sum_function).collect() <-- get data to driver
+# step12: call channel_views.reduceByKey(sum_function).collect() <-- get data to driver
