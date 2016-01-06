@@ -1,5 +1,4 @@
 # These are my assignment project codes developed in python.
-# Some of the projects are tested on Mac, Some on Raspberry Pi
 # Anyone can use these codes without any permission
 #
 # Contact info: Kishwar Kumar [kumar.kishwar@gmail.com]
@@ -97,6 +96,7 @@ if __name__ == "__main__":
                                                  sqft_intercept, sqft_slope)
     print 'The RSS of predicting Prices based on Square Feet is : ' + str(rss_prices_on_sqft)
 
+    # Predict the squarefeet given price
     my_house_price = 800000
     estimated_squarefeet = inverse_regression_predictions(my_house_price, \
                                                       sqft_intercept, \
