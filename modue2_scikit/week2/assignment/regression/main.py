@@ -10,8 +10,8 @@ __author__ = 'kishwarkumar'
 __date__ = '6/1/16' '10:06 PM'
 
 # imports
-from MultipleRegression_Part1 import MultipleRegression_Part1
+from MultipleRegression_Part1 import MultipleRegressionPart1
 
 if __name__ == "__main__":
-    p1 = MultipleRegression_Part1()
-    p1.CallMe()
+    p1 = MultipleRegressionPart1()
+    p1.callme()
